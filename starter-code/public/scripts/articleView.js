@@ -75,10 +75,6 @@ articleView.setTeasers = function() {
 
 articleView.initNewArticlePage = function() {
   $('.tab-content').show();
-  // $('#export-field').hide();
-  // $('#article-json').on('focus', function(){
-  //   this.select();
-  });
 
   $('#new-form').on('change', 'input, textarea', articleView.create);
   $('#new-form').on('submit', articleView.submit);
