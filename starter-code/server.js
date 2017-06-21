@@ -1,6 +1,7 @@
 'use strict';
 
 // TODO: Install and require the NPM Postgres package 'pg' into your server.js, and ensure that it is then listed as a dependency in your package.json
+const pg = require('pg');
 const fs = require('fs');
 const express = require('express');
 
@@ -34,7 +35,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... (1) Create View - routes the user to the new.html static page when /new is used after the localhost:3000.  This does not interact with the article.js functions.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -42,7 +43,7 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... (3 & 4) Sends SQL query to the database, and handles the response from the database.  This interacts with the the fetchAll function in article.js (which would be step 5 from the diagram).  This is the READ part of CRUD.
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
@@ -54,7 +55,7 @@ app.get('/articles', function(request, response) {
 
 app.post('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here...(3 & 4) Sends a sql query to the database to insert new data then if successful sends a message back to console saying the insert is complete.  This interacts with the insertRecord function from article.js.  It represents the Create part of CRUD.
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -79,7 +80,7 @@ app.post('/articles', function(request, response) {
 
 app.put('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  // Put your response here... (3 & 4) Sends the sql query to the database to update an existing record, then handes the response by telling the console 'update complete'.  This interacts with the updateRecord method from article.js.  This represents the Update part of CRUD.
   client.query(
     `UPDATE articles
     SET
