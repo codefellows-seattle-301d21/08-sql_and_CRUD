@@ -84,29 +84,6 @@ articleView.initNewArticlePage = function() {
   $('#new-form').on('submit', articleView.submit);
 };
 
-articleView.create = function() {
-  let article;
-  $('#articles').empty();
-
-  article = new Article({
-    title: $('#article-title').val(),
-    author: $('#article-author').val(),
-    authorUrl: $('#article-author-url').val(),
-    category: $('#article-category').val(),
-    body: $('#article-body').val(),
-    publishedOn: new Date().toISOString()
-  });
-
-  $('#articles').append(article.toHtml());
-
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-
-  $('#export-field').show();
-  $('#article-json').val(`${JSON.stringify(article)},`);
-};
-
 articleView.submit = function(event) {
   event.preventDefault();
   let article = new Article({
