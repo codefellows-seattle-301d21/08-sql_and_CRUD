@@ -97,7 +97,7 @@ articleView.create = function() {
     publishedOn: new Date().toISOString()
   });
 
-  $('#articles').append(article.toHtml());
+  // $('#articles').append(article.toHtml());
 
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
