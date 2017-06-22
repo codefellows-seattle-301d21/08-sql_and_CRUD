@@ -122,7 +122,7 @@ app.put('/articles/:id', function(request, response) {
 
 app.delete('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  //1. Number 3. We are submitting a query to our database with no significant repsponse
+  //1. Numbers 2, 3 and 4.
   //2. Article.deleteRecord
   //3. This falls within the range of DELETE/DESTROY from CRUD as we are removing content from the database.
   client.query(
@@ -140,6 +140,11 @@ app.delete('/articles/:id', function(request, response) {
 app.delete('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // Put your response here...
+
+  //1. 2, 3 and 4.
+  //2. Article.truncateTable
+  //3. Destroy.
+
   client.query(
     'DELETE FROM articles;'
   )
@@ -153,6 +158,9 @@ app.delete('/articles', function(request, response) {
 
 // COMMENT: What is this function invocation doing?
 // Put your response here...
+
+// loadDB(); is checking for/loading an article then loading it.
+
 loadDB();
 
 app.listen(PORT, function() {
