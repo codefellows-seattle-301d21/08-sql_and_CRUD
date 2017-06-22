@@ -71,7 +71,7 @@ Article.prototype.insertRecord = function(callback) {
   .then(function(data) {
     console.log(data);
     if (callback) callback();
-  })
+  });
 };
 
 Article.prototype.deleteRecord = function(callback) {
