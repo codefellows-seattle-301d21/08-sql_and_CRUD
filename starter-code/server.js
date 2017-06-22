@@ -46,7 +46,7 @@ app.get('/new', function(request, response) {
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
 
-  // 1. Number 3. We are querying data from our database.
+  // 1. Number 3 and 4. We are querying data from our database and recieving data in return.
   // 2. Article.loadall takes the records requested by article.fetchAll
   // 3. CREATE, we are taking records from DB which are then being returned as objects in Js.
   client.query('SELECT * FROM articles')
@@ -93,8 +93,8 @@ app.put('/articles/:id', function(request, response) {
   // Put your response here...
 
   //1. Number 3
-  //2.
-  //3.
+  //2. Article.updateRecord;
+  //3. This falls within the range of UPDATE from CRUD as we are updating the database.
 
   client.query(
     `UPDATE articles
@@ -122,7 +122,9 @@ app.put('/articles/:id', function(request, response) {
 
 app.delete('/articles/:id', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  //1. Number 3. We are submitting a query to our database with no significant repsponse
+  //2. Article.deleteRecord
+  //3. This falls within the range of DELETE/DESTROY from CRUD as we are removing content from the database.
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
     [request.params.id]
