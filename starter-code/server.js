@@ -159,7 +159,7 @@ app.delete('/articles', function(request, response) {
 // COMMENT: What is this function invocation doing?
 // Put your response here...
 
-// loadDB(); is checking for/loading an article then loading it.
+// loadDB(); Is checking database to see if article table exist. If not, the table is created and loadAll() is called.
 
 loadDB();
 
@@ -172,7 +172,9 @@ app.listen(PORT, function() {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  //1. 2, 3 and 4.
+  //2. Article.updateRecord
+  //3. U{DATE}
   client.query('SELECT COUNT(*) FROM articles')
   .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -189,16 +191,18 @@ function loadArticles() {
             VALUES ($1, $2, $3, $4, $5, $6);
           `,
             [ele.title, ele.author, ele.authorUrl, ele.category, ele.publishedOn, ele.body]
-          )
-        })
-      })
+          );
+        });
+      });
     }
-  })
+  });
 }
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+  //1. 2, 3 and 4, 5.
+  //2. Article.updateRecord
+  //3. CREATE
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
