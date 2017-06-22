@@ -33,11 +33,11 @@ app.use(express.static('./public'));
 
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
 
   // 1. Number 5 on the diagram. The server is responding with an html file.
   // 2. Article.fetchAll retrieves all article records from the database
-  // 3. The records are being reused
+  // 3. The records are being reused so R out of CRUD.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -45,7 +45,10 @@ app.get('/new', function(request, response) {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // Put your response here...
+
+  // 1. Number 3. We are querying data from our database.
+  // 2. Article.loadall takes the records requested by article.fetchAll
+  // 3. CREATE, we are taking records from DB which are then being returned as objects in Js.
   client.query('SELECT * FROM articles')
   .then(function(result) {
     response.send(result.rows);
